@@ -1,0 +1,47 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" // Plugin Google Services per Firebase
+}
+
+android {
+    namespace = "com.example.registroturni"
+    compileSdkVersion 34
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
+    defaultConfig {
+        applicationId "com.example.registroturni"
+        minSdkVersion 23
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0.0"
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    // Firebase BoM gestisce le versioni per tutte le librerie Firebase
+    implementation platform('com.google.firebase:firebase-bom:33.6.0')
+
+    // Aggiungi Firebase Analytics
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Altre librerie Firebase (aggiungi solo quelle necessarie)
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+
+    // Dipendenze aggiuntive (se richieste dal progetto)
+}

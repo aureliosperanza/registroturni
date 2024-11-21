@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "285135590389",
+    "project_id": "registroelettronico-da571",
+    "storage_bucket": "registroelettronico-da571.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285135590389:android:e3b1316e5c0d8e2ae786bc",
+        "android_client_info": {
+          "package_name": "com.example.registroturni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV4mzPs8ECkDabIAbfJQFrXceYCFCsHYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
