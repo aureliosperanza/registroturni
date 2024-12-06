@@ -62,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance; // Istanza di FirebaseAuth
+  final String _version = "Versione 1.0.0"; // Aggiungi qui la tua versione
 
   @override
   void dispose() {
@@ -118,84 +119,95 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.white, // Sfondo bianco
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              'assets/images/logo.svg', // Percorso del logo
-              height: 100, // Altezza dell'immagine
+      body: Stack(
+        children: [
+          Container(
+            color: Colors.white, // Sfondo bianco
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/logo.svg', // Percorso del logo
+                  height: 100, // Altezza dell'immagine
+                ),
+                const SizedBox(height: 32.0), // Spazio sotto l'immagine
+                TextField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  style: const TextStyle(color: Colors.blue),
+                  decoration: const InputDecoration(
+                    labelText: "Email",
+                    labelStyle: TextStyle(color: Colors.blue),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16.0),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  style: const TextStyle(color: Colors.blue),
+                  decoration: const InputDecoration(
+                    labelText: "Password",
+                    labelStyle: TextStyle(color: Colors.blue),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: _recover,
+                    child: const Text(
+                      "Hai dimenticato la password?",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24.0),
+                ElevatedButton(
+                  onPressed: _login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                  child: const Text("Login",
+                      style: TextStyle(color: Colors.white)),
+                ),
+                const SizedBox(height: 16.0),
+                OutlinedButton(
+                  onPressed: _register,
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Colors.blue),
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                  child: const Text("Registrati",
+                      style: TextStyle(color: Colors.blue)),
+                ),
+              ],
             ),
-            const SizedBox(height: 32.0), // Spazio sotto l'immagine
-            TextField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              style: const TextStyle(color: Colors.blue), // Testo bianco
-              decoration: const InputDecoration(
-                labelText: "Email",
-                labelStyle:
-                    TextStyle(color: Colors.blue), // Testo del label bianco
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue),
-                ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                _version,
+                style: const TextStyle(color: Colors.grey, fontSize: 12),
               ),
             ),
-            const SizedBox(height: 16.0),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              style: const TextStyle(color: Colors.blue), // Testo bianco
-              decoration: const InputDecoration(
-                labelText: "Password",
-                labelStyle:
-                    TextStyle(color: Colors.blue), // Testo del label bianco
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue),
-                ),
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: _recover,
-                child: const Text(
-                  "Hai dimenticato la password?",
-                  style: TextStyle(color: Colors.blue), // Testo blu
-                ),
-              ),
-            ),
-            const SizedBox(height: 24.0),
-            ElevatedButton(
-              onPressed: _login, // Testo blu
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Sfondo bianco
-                minimumSize:
-                    const Size(double.infinity, 50), // Larghezza massima
-              ),
-              child: const Text("Login", style: TextStyle(color: Colors.white)),
-            ),
-            const SizedBox(height: 16.0),
-            OutlinedButton(
-              onPressed: _register, // Testo bianco
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Colors.blue), // Contorno bianco
-                minimumSize:
-                    const Size(double.infinity, 50), // Larghezza massima
-              ), // Naviga alla pagina di registrazione
-              child: const Text("Registrati",
-                  style: TextStyle(color: Colors.blue)),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -31,6 +31,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Ottieni l'utente corrente
+    final User? user = FirebaseAuth.instance.currentUser;
+    final String userName =
+        user?.displayName ?? user?.email?.split('@')[0] ?? "Utente";
     // Definisci un tema comune per i bottoni
     final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: Colors.white,
@@ -46,6 +50,21 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(height: 50), // Spazio in alto alla pagina
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Ciao, $userName", // Saluto personalizzato
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20), // Spazio sotto il saluto
           Container(
             padding: const EdgeInsets.all(16),
             margin: const EdgeInsets.symmetric(horizontal: 20),
